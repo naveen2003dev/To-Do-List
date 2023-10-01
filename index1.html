@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>To-Do List</h2>
+
+            <input id="inputbox" type="text" placeholder="Enter Here....." value="">
+            <!-- <button id="btn" onclick="addTask()">+Add</button> -->
+
+            <ul id="unlist"></ul>
+        </div>
+    </div>
+</body>
+<script>
+    let inputBox = document.querySelector("#inputbox");
+    let list = document.querySelector("#unlist");
+
+    // function addTask(){
+    //         if(inputBox.value === ' '){
+    //             alert("You have to write something!")
+    //         }else{
+    //             let li = document.createElement("li");
+    //             li.innerHTML = inputBox.value;
+    //             list.appendChild("li")
+    //         }
+    //     }
+
+    inputBox.addEventListener("keydown", function(event){
+        // console.log("input event called")
+        // console.log(event.key)
+        // console.log(inputBox.value)
+        
+        if(event.key == "Enter" && inputBox.value != ''){
+            let newItem = document.createElement("li");
+
+            newItem.innerHTML = `${inputBox.value}<i></i>`;
+
+            newItem.addEventListener("click", function(){
+                this.classList.toggle('done');
+            })
+
+            newItem.querySelector("i").addEventListener("click", function(){
+                newItem.remove();
+            })
+
+            list.appendChild(newItem);
+            inputBox.value = " ";
+        }
+    })
+</script>
+
+</html>
